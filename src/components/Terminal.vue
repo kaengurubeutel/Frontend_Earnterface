@@ -17,6 +17,7 @@ const sr = new Recognition();
 
 onMounted(() => {
   sr.continuous = true;
+  sr.lang = "en-US";
   sr.interimResults = true;
   sr.onstart = () => {
     console.log("started recording")
@@ -73,6 +74,7 @@ onMounted(() => {
           .then(response => response.json())
           .then((response) => {
             if (response) {
+              console.log(response)
               let temp = response[0];
               let recipient_id = temp["recipient_id"];
               previousTexts[previousTexts.length]  = [temp["text"], "true"];
@@ -111,11 +113,10 @@ onMounted(() => {
 <template>
   <h1>Rasa Terminal</h1>
   <button @click="ToggleMic">ToggleMic</button>
-  <Card  :msg="text" bot="false"></Card>
 
 
 
-  <div v-for =" text in previousTexts" :key="text.id" >
+  <div v-if="previousTexts.length > 0" v-for =" text in previousTexts" :key="text.id" >
       <Card :msg="text[0]" :bot="text[1]"></Card>
   </div>
 
