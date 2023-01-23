@@ -78,26 +78,26 @@ onMounted(() => {
               // TODO function for reading 2 responses
               console.log(response)
 
-              let temp = null;
+              let currantText = null;
 
               if(response.length === 1){
-                temp = response[0]["text"];
+                currantText = response[0]["text"];
               } else {
-                temp = "";
+                currantText = "";
                 for (let i = 0; i < response.length; i++){
-                  temp += response[i]["text"];
-                  if (i+1<response.length) temp += "\n";
+                  currantText += response[i]["text"];
+                  if (i+1<response.length) currantText += "\n";
                 }
               }
 
 
-              previousTexts[previousTexts.length]  = [temp, "true"];
+              previousTexts[previousTexts.length]  = [currantText, "true"];
 
 
               synth.volume = 1; // 0 to 1
               synth.rate = 1; // 0.1 to 10
               synth.pitch = 1.5; // 0 to 2
-              synth.text  = temp;
+              synth.text  = currantText;
 
 
               const voice =  {
