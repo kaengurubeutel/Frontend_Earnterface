@@ -97,7 +97,7 @@ onMounted(() => {
               synth.volume = 1; // 0 to 1
               synth.rate = 1; // 0.1 to 10
               synth.pitch = 1.5; // 0 to 2
-              synth.text  = temp["text"];
+              synth.text  = temp;
 
 
               const voice =  {
