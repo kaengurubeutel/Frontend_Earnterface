@@ -74,10 +74,24 @@ onMounted(() => {
           .then(response => response.json())
           .then((response) => {
             if (response) {
+
+              // TODO function for reading 2 responses
               console.log(response)
-              let temp = response[0];
-              let recipient_id = temp["recipient_id"];
-              previousTexts[previousTexts.length]  = [temp["text"], "true"];
+
+              let temp = null;
+
+              if(response.length === 1){
+                temp = response[0]["text"];
+              } else {
+                temp = "";
+                for (let i = 0; i < response.length; i++){
+                  temp += response[i]["text"];
+                  if (i+1<response.length) temp += "\n";
+                }
+              }
+
+
+              previousTexts[previousTexts.length]  = [temp, "true"];
 
 
               synth.volume = 1; // 0 to 1
@@ -107,6 +121,10 @@ onMounted(() => {
         sr.start();
       }
     }
+
+    let combineAnswers = function (input) {
+
+    };
 
 </script>
 
